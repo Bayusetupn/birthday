@@ -1,118 +1,125 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import lamp from "../../public/element/lamp.svg";
+import bg from "../../public/element/bg.png";
+import love1 from "../../public/element/love1.svg";
+import love2 from "../../public/element/love2.svg";
+import cake from "../../public/element/lottie/cake.json";
+import boom from "../../public/element/lottie/boom.json";
+import { useEffect, useRef, useState } from "react";
+import { Player } from "@lottiefiles/react-lottie-player";
+import kepalaDua from "../../public/element/20.png";
+import msg from "../../public/element/msg.png";
+import msgBefore from "../../public/element/msgBefore.png";
+import ReactCardFlip from "react-card-flip";
+import loveMsg from "../../public/element/loveMessage.svg";
+import one from '../../public/element/1.png';
+import two from '../../public/element/2.png';
+import three from '../../public/element/3.png';
 
 export default function Home() {
+  const cakeRef = useRef();
+  const boomRef = useRef();
+  const [alive, setAlive] = useState(true);
+  const [flip, setFlip] = useState(false);
+
+  const afterClick = () => {
+    if (alive) {
+      boomRef.current.play();
+      setAlive(false);
+      cakeRef.current.play();
+      setTimeout(() => {
+        cakeRef.current.pause();
+      }, 900);
+    }
+  };
+
+  const flips = () => {
+    setFlip(true);
+  };
+ 
+  useEffect(() => {
+    // alert("Pencet kue buat tiup lilin.");
+    setTimeout(() => {
+      cakeRef.current.pause();
+    }, 1000);
+  }, []);
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className=" overflow-hidden">
+      {/* Hero Section */}
+      <div className="relative w-[100vw] h-[100vh]">
+        <Player
+          ref={boomRef}
+          src={boom}
+          className="fixed bottom-0 w-[200%] z-20 lg:w-[100vw]"
+        />
+        <Image src={lamp} alt="lamp" className="absolute lg:-mt-4 object-cover w-[250%] lg:w-[100%] z-10" />
+        <Image src={love1} alt="love" className="absolute w-[80%] -top-10 lg:top-0 -left-16 lg:left-0 lg:w-[30%] z-10" />
+        <div className="absolute bottom-5 z-10 w-[100%] flex justify-center item-center">
+        <Image src={kepalaDua} alt="20" className="w-[400%] lg:w-[100%]" />
+        </div>
+        <Image
+          src={love1}
+          alt="love"
+          className="absolute right-0 w-[80%] lg:w-[30%] -right-16 lg:right-0 -top-10 lg:top-0 -scale-x-100 w-[30%] z-10"
+        />
+        <Image
+          src={bg}
+          alt="background"
+          className="fixed w-[100vw] opacity-40 h-[100vh] object-cover z-0"
+        />
+
+        <div className="absolute w-[100vw] flex flex-col-reverse justify-center items-center h-[100vh] z-10 md:flex-col lg:flex-row">
+          <div className="items-start w-[80%] lg:w-[40%] justify-center flex flex-col">
+            <h1 className="font-extrabold mb-2 text-3xl">
+              Happy Birthday <br></br>
+              <span className="text-pink">Adindaku...</span>
+            </h1>
+            <p className="lg:w-[70%] text-justify">
+              Sayangnya aku sudahh{" "}
+              <span className="font-extrabold">20 tahun</span> sudah besarr
+              hehehe. jadi punya aku terus yaa sayanggku cintakuu.
+            </p>
+          </div>
+          <div className="w-[75%] mb-10 lg:mb-0 lg:w-[25%]" onClick={() => afterClick()}>
+            <Player ref={cakeRef} src={cake} autoplay />
+          </div>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      {/* Message */}
+      <div className="mt-5 mb-16 relative w-[100vw]">
+        <div className="w-[100%] text-center flex flex-col justify-center items-center">
+          <h1 className="text-pink font-extrabold text-3xl">MESSAGE</h1>
+          <ReactCardFlip
+            isFlipped={flip}
+            containerClassName="w-[100%] lg:w-[30%] mt-10"
+            flipDirection="horizontal"
+          >
+            <Image onClick={() => flips()} className="w-[100%]" src={msgBefore} />
+            <Image src={msg} className="w-[100%]" />
+          </ReactCardFlip>
+          <Image src={loveMsg} className="absolute lg:block hidden w-[10%] right-64" />
+          <Image
+            src={loveMsg}
+            className="absolute w-[10%] lg:block left-64 hidden -scale-x-100"
+          />
+        </div>
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className="mt-5 relative w-[100vw] flex flex-col items-center text-center">
+        <h1 className="text-pink w-[100%] mb-16 font-extrabold text-3xl">
+          MEMORIES
+        </h1>
+        <div className="flex flex-col lg:flex-row w-[90%] justify-center items-center">
+          <Image src={one} className="w-[100%]" />
+          <Image src={two} className="w-[100%]" />
+          <Image src={three} className="w-[100%]"/>
+        </div>
+        <div className="mt-24 mb-6" >
+          <p >© Copyright Bayu Setiawan 2024 - Crafted with love</p>
+        </div>
+        <Image src={love2} className="absolute w-[70%] lg:w-[100%] -right-10 lg:right-0 lg:bottom-0 bottom-20 -scale-x-100"/>
+        <Image src={love2} className="absolute w-[70%] lg:w-[100%] lg:left-0 -left-10 lg-bottom-0 bottom-20"/>
       </div>
-    </main>
+    </div>
   );
 }
