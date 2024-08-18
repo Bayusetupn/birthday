@@ -51,7 +51,7 @@ export default function Home() {
         <Player
           ref={boomRef}
           src={boom}
-          className="fixed bottom-0 w-[200%] z-20 lg:w-[100vw]"
+          className="fixed bottom-0 w-[200%] z-11 lg:w-[100vw]"
         />
         <Image src={lamp} alt="lamp" className="absolute lg:-mt-4 object-cover w-[250%] lg:w-[100%] z-10" />
         <Image src={love1} alt="love" className="absolute w-[80%] -top-10 lg:top-0 -left-16 lg:left-0 lg:w-[30%] z-10" />
@@ -81,7 +81,7 @@ export default function Home() {
               hehehe. jadi punya aku terus yaa sayanggku cintakuu.
             </p>
           </div>
-          <div className="w-[75%] mb-10 lg:mb-0 lg:w-[25%]" onClick={() => afterClick()}>
+          <div className="w-[75%] mb-10 lg:mb-0 lg:w-[25%] z-20" onClick={afterClick}>
             <Player ref={cakeRef} src={cake} autoplay />
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function Home() {
           <h1 className="text-pink font-extrabold text-3xl">MESSAGE</h1>
           <ReactCardFlip
             isFlipped={flip}
-            containerClassName="w-[100%] lg:w-[30%] mt-10"
+            containerClassName="w-[100%] lg:w-[30%] mt-10 z-20 cursor-pointer" 
             flipDirection="horizontal"
           >
             <Image onClick={() => flips()} className="w-[100%]" src={msgBefore} />
@@ -117,8 +117,8 @@ export default function Home() {
         <div className="mt-24 mb-6" >
           <p >© Copyright Bayu Setiawan 2024 - Crafted with love</p>
         </div>
-        <Image src={love2} className="absolute w-[70%] lg:w-[100%] -right-10 lg:right-0 lg:bottom-0 bottom-20 -scale-x-100"/>
-        <Image src={love2} className="absolute w-[70%] lg:w-[100%] lg:left-0 -left-10 lg-bottom-0 bottom-20"/>
+        <Image src={love2} className="absolute w-[20%] lg:w-[20%] -right-10 lg:right-0 lg:bottom-0 bottom-20 -scale-x-100"/>
+        <Image src={love2} className="absolute w-[20%] lg:w-[20%] lg:left-0 -left-10 lg-bottom-0 bottom-20"/>
       </div>
     </div>
   );
