@@ -19,7 +19,7 @@ import three from '../../public/element/3.png';
 export default function Home() {
   const cakeRef = useRef();
   const boomRef = useRef();
-  const [alive, setAlive] = useState(true);
+  const [alive, setAlive] = useState(false);
   const [flip, setFlip] = useState(false);
 
   const afterClick = () => {
@@ -41,6 +41,7 @@ export default function Home() {
     // alert("Pencet kue buat tiup lilin.");
     setTimeout(() => {
       cakeRef.current.pause();
+      setAlive(true)
     }, 1000);
   }, []);
 
@@ -117,8 +118,8 @@ export default function Home() {
         <div className="mt-24 mb-6" >
           <p >© Copyright Bayu Setiawan 2024 - Crafted with love</p>
         </div>
-        <Image src={love2} className="absolute w-[20%] lg:w-[20%] -right-10 lg:right-0 lg:bottom-0 bottom-20 -scale-x-100"/>
-        <Image src={love2} className="absolute w-[20%] lg:w-[20%] lg:left-0 -left-10 lg-bottom-0 bottom-20"/>
+        <Image src={love2} className="absolute w-[70%] lg:w-[20%] -right-10 lg:right-0 lg:bottom-0 bottom-20 -scale-x-100"/>
+        <Image src={love2} className="absolute w-[70%] lg:w-[20%] lg:left-0 -left-10 lg-bottom-0 bottom-20"/>
       </div>
     </div>
   );
